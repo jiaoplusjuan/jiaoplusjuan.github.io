@@ -19,10 +19,10 @@ window.siteData = {
     {
       title: "Gradient Domain Reconstruction for Monte Carlo PDE Solvers",
       authors: [
-        { name: "Jiaqi Wu", highlight: true },
+        { name: "Jiaqi Wu", highlight: true, href: "https://github.com/jiaoplusjuan/jiaoplusjuan.github.io" },
         { name: "Xuejun Hu" },
-        { name: "Shuang Zhao" },
-        { name: "Kun Xu" },
+        { name: "Shuang Zhao", href: "https://shuangz.com" },
+        { name: "Kun Xu", href: "https://cg.cs.tsinghua.edu.cn/people/~kun/" },
       ],
       venue: "ACM Transactions on Graphics (SIGGRAPH 2026)",
       //venueNote: "SIGGRAPH 2026 Technical Papers Honorable Mention Award",
@@ -36,10 +36,10 @@ window.siteData = {
       title: "Generalized Spherical Harmonics Products using Spherical Grids",
       authors: [
         { name: "Di An" },
-        { name: "Jiaqi Wu", highlight: true },
+        { name: "Jiaqi Wu", highlight: true, href: "https://github.com/jiaoplusjuan" },
         { name: "Bowen Xu" },
-        { name: "Lingqi Yan" },
-        { name: "Kun Xu" },
+        { name: "Lingqi Yan", href: "https://sites.cs.ucsb.edu/~lingqi/" },
+        { name: "Kun Xu", href: "https://cg.cs.tsinghua.edu.cn/people/~kun/" },
       ],
       venue: "ACM Transactions on Graphics (SIGGRAPH 2026)",
       image: "assets/sig2026an.png",
@@ -51,8 +51,8 @@ window.siteData = {
     {
       title: "Adding Regional Control for Continuous Remeshing via Attention Flows",
       authors: [
-        { name: "Jiaqi Wu", highlight: true },
-        { name: "Kun Xu" },
+        { name: "Jiaqi Wu", highlight: true, href: "https://github.com/jiaoplusjuan" },
+        { name: "Kun Xu", href: "https://cg.cs.tsinghua.edu.cn/people/~kun/" },
       ],
       venue: "SIGGRAPH 2025 Poster",
       image: "assets/sig2025.png",

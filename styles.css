@@ -217,6 +217,10 @@ h2 {
   color: var(--muted);
 }
 
+.author-link {
+  color: inherit;
+}
+
 .venue,
 .venue-note {
   color: var(--ink);

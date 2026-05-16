@@ -19,6 +19,7 @@ Most day-to-day edits should happen in `data/site-data.js`:
 - profile text supports Markdown-style links, for example `[Prof. Kun Xu](https://example.com)`
 - edit the three homepage links, `Email`, `GitHub`, and `CV`, in `profile.links`
 - add or edit papers in `publications`
+- add an author link with `href`, for example `{ name: "Kun Xu", href: "https://cg.cs.tsinghua.edu.cn/people/~kun/" }`
 - add a red bold honor after a paper venue with `venueNote`, for example `venueNote: "Honorable Mention"`
 - replace a paper placeholder image by setting `image: "assets/your-image.jpg"`
 - paper images share the same displayed width and keep their natural aspect ratio

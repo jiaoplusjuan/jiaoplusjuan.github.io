@@ -58,7 +58,9 @@ function renderAuthors(authors) {
   return authors
     .map((author) => {
       const name = `${author.name}${author.note || ""}`;
-      const html = escapeHTML(name);
+      const html = author.href
+        ? `<a class="author-link" href="${escapeHTML(author.href)}">${escapeHTML(name)}</a>`
+        : escapeHTML(name);
       return author.highlight ? `<strong>${html}</strong>` : html;
     })
     .join(", ");

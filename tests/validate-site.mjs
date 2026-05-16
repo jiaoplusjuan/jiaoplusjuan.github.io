@@ -113,6 +113,18 @@ delete renderContext.window.siteData.profile.chineseName;
 vm.createContext(renderContext);
 vm.runInContext(renderSource, renderContext, { filename: renderPath });
 assert(renderContext.rootElement.innerHTML.includes("Jiaqi Wu"), "renderer should still render the profile when chineseName is omitted");
+for (const href of [
+  "https://github.com/jiaoplusjuan",
+  "https://cg.cs.tsinghua.edu.cn/people/~kun/",
+  "https://shuangz.com",
+  "https://sites.cs.ucsb.edu/~lingqi/",
+]) {
+  assert(renderContext.rootElement.innerHTML.includes(`href="${href}"`), `renderer should link author/profile URL: ${href}`);
+}
+assert(
+  renderContext.rootElement.innerHTML.includes('<strong><a class="author-link" href="https://github.com/jiaoplusjuan">Jiaqi Wu</a></strong>'),
+  "highlighted linked authors should remain bold",
+);
 assert(
   renderContext.rootElement.innerHTML.includes('href="https://cg.cs.tsinghua.edu.cn/people/~kun/"'),
   "renderer should turn the Kun Xu intro link into an anchor",
@@ -163,10 +175,10 @@ assert(
   siteData.publications[0].links.some((link) => link.label === "PDF" && link.href === "paper/main.pdf"),
   "Gradient paper PDF button should point to paper/main.pdf",
 );
-assert(
-  siteData.publications[0].venueNote === "SIGGRAPH 2026 Technical Papers Honorable Mention Award",
-  "Gradient paper should show its honor as a venue note",
-);
+assert(siteData.publications[0].authors.find((author) => author.name === "Jiaqi Wu").href === "https://github.com/jiaoplusjuan", "Jiaqi Wu author should link to GitHub");
+assert(siteData.publications[0].authors.find((author) => author.name === "Kun Xu").href === "https://cg.cs.tsinghua.edu.cn/people/~kun/", "Kun Xu author should link to homepage");
+assert(siteData.publications[0].authors.find((author) => author.name === "Shuang Zhao").href === "https://shuangz.com", "Shuang Zhao author should link to homepage");
+assert(siteData.publications[1].authors.find((author) => author.name === "Lingqi Yan").href === "https://sites.cs.ucsb.edu/~lingqi/", "Lingqi Yan author should link to homepage");
 for (const [index, paper] of siteData.publications.entries()) {
   assert(paper.links.some((link) => link.label === "PDF"), `${paper.title} should define a PDF button`);
   assert(paper.links.every((link) => "href" in link), `${paper.title} links should expose href fields, even when empty`);
