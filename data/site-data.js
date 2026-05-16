@@ -105,7 +105,7 @@ window.siteData = {
       {
         date: "May 2025",
         text:
-          "First Prize, The 5th CGAI Challenge, Human Skeleton Generation Track; ranked first on both public and private leaderboards.",
+          "First Prize, The 5th Jittor AI Algorithm Challenge, Human Skeleton Generation Track.",
       },
       {
         date: "May 2025",
