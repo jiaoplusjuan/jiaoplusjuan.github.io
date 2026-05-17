@@ -28,7 +28,7 @@ window.siteData = {
       //venueNote: "SIGGRAPH 2026 Technical Papers Honorable Mention Award",
       image: "assets/sig2026wu.jpg",
       links: [
-        { label: "PDF", href: "paper/main.pdf" },
+        { label: "PDF", href: "paper/Gradient-Domain-Reconstruction-for-Monte-Carlo-PDE-Solvers" },
         { label: "Code", href: "" },
       ],
     },
