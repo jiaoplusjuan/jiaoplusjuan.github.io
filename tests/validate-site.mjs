@@ -4,6 +4,8 @@ import vm from "node:vm";
 
 const root = new URL("..", import.meta.url).pathname;
 const indexPath = join(root, "index.html");
+const sitemapPath = join(root, "sitemap.xml");
+const robotsPath = join(root, "robots.txt");
 const stylesPath = join(root, "styles.css");
 const profilePath = join(root, "assets", "profile.jpg");
 const gradientPaperHref = "paper/Gradient-Domain-Reconstruction-for-Monte-Carlo-PDE-Solvers.pdf";
@@ -15,6 +17,7 @@ const expectedPaperImages = [
   "assets/sig2026an.png",
   "assets/sig2025.png",
 ];
+const siteUrl = "https://jiaoplusjuan.github.io/jiaqiwu-tsinghua.github.io/";
 
 function assert(condition, message) {
   if (!condition) {
@@ -23,6 +26,8 @@ function assert(condition, message) {
 }
 
 assert(existsSync(indexPath), "index.html should exist");
+assert(existsSync(sitemapPath), "sitemap.xml should exist");
+assert(existsSync(robotsPath), "robots.txt should exist");
 assert(existsSync(stylesPath), "styles.css should exist");
 assert(existsSync(profilePath), "assets/profile.jpg should exist");
 assert(existsSync(gradientPaperPath), "Gradient paper PDF should exist for the Gradient paper PDF link");
@@ -33,6 +38,8 @@ assert(existsSync(dataPath), "data/site-data.js should exist");
 assert(existsSync(renderPath), "scripts/render-site.js should exist");
 
 const html = readFileSync(indexPath, "utf8");
+const sitemap = readFileSync(sitemapPath, "utf8");
+const robots = readFileSync(robotsPath, "utf8");
 const css = readFileSync(stylesPath, "utf8");
 const dataSource = readFileSync(dataPath, "utf8");
 const renderSource = readFileSync(renderPath, "utf8");
@@ -41,6 +48,12 @@ vm.createContext(dataContext);
 vm.runInContext(dataSource, dataContext, { filename: dataPath });
 const siteData = dataContext.window.siteData;
 assert(siteData, "data/site-data.js should expose window.siteData for non-module loading");
+
+assert(sitemap.includes(`<loc>${siteUrl}</loc>`), "sitemap.xml should list the GitHub Pages homepage URL");
+assert(sitemap.includes("<lastmod>2026-05-17</lastmod>"), "sitemap.xml should include a current lastmod date");
+assert(robots.includes("User-agent: *"), "robots.txt should apply to all crawlers");
+assert(robots.includes("Allow: /"), "robots.txt should allow crawling the site");
+assert(robots.includes(`Sitemap: ${siteUrl}sitemap.xml`), "robots.txt should reference sitemap.xml");
 
 for (const text of [
   "Jiaqi Wu",
@@ -200,7 +213,7 @@ assert(!posterHTML.includes("[ Code ]"), "renderer should not show a Code button
 
 const experience = siteData.experience.items.map((item) => `${item.date} ${item.text}`).join("\n");
 const awards = siteData.awards.items.map((item) => `${item.date} ${item.text}`).join("\n");
-for (const movedItem of ["The 5th CGAI Challenge", "Beijing Natural Science Foundation"]) {
+for (const movedItem of ["The 5th Jittor AI Algorithm Challenge", "Beijing Natural Science Foundation"]) {
   assert(!experience.includes(movedItem), `${movedItem} should move out of Research Experience`);
   assert(awards.includes(movedItem), `${movedItem} should appear in Awards & Recognition`);
 }
