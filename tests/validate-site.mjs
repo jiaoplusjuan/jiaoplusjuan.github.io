@@ -6,7 +6,8 @@ const root = new URL("..", import.meta.url).pathname;
 const indexPath = join(root, "index.html");
 const stylesPath = join(root, "styles.css");
 const profilePath = join(root, "assets", "profile.jpg");
-const mainPaperPath = join(root, "paper", "main.pdf");
+const gradientPaperHref = "paper/Gradient-Domain-Reconstruction-for-Monte-Carlo-PDE-Solvers.pdf";
+const gradientPaperPath = join(root, gradientPaperHref);
 const dataPath = join(root, "data", "site-data.js");
 const renderPath = join(root, "scripts", "render-site.js");
 const expectedPaperImages = [
@@ -24,7 +25,7 @@ function assert(condition, message) {
 assert(existsSync(indexPath), "index.html should exist");
 assert(existsSync(stylesPath), "styles.css should exist");
 assert(existsSync(profilePath), "assets/profile.jpg should exist");
-assert(existsSync(mainPaperPath), "paper/main.pdf should exist for the Gradient paper PDF link");
+assert(existsSync(gradientPaperPath), "Gradient paper PDF should exist for the Gradient paper PDF link");
 for (const imagePath of expectedPaperImages) {
   assert(existsSync(join(root, imagePath)), `${imagePath} should exist`);
 }
@@ -72,6 +73,10 @@ assert(
 assert(!("research" in siteData), "siteData should not keep the removed standalone Research section");
 
 assert(html.includes('href="styles.css?v='), "index.html should load cache-busted styles.css");
+assert(
+  html.includes('<meta name="google-site-verification" content="8v93ilf4QYqnHOZviplRx_3jtbRqEADriWoNgA3eijM">'),
+  "index.html should include Google Search Console verification meta",
+);
 assert(html.includes('id="site-root"'), "index.html should expose a site-root mount point");
 assert(html.includes('src="data/site-data.js?v='), "index.html should load cache-busted site data before the renderer");
 assert(html.includes('src="scripts/render-site.js?v='), "index.html should load a cache-busted renderer");
@@ -172,10 +177,10 @@ assert(siteData.profile.links.some((link) => link.href === "resume_engilish.pdf"
 assert(!siteData.profile.links.some((link) => link.href.startsWith("#")), "profile links should not jump to page sections");
 assert(siteData.publications.length >= 3, "siteData should include at least three active publications");
 assert(
-  siteData.publications[0].links.some((link) => link.label === "PDF" && link.href === "paper/main.pdf"),
-  "Gradient paper PDF button should point to paper/main.pdf",
+  siteData.publications[0].links.some((link) => link.label === "PDF" && link.href === gradientPaperHref),
+  "Gradient paper PDF button should point to the local Gradient paper PDF",
 );
-assert(siteData.publications[0].authors.find((author) => author.name === "Jiaqi Wu").href === "https://github.com/jiaoplusjuan", "Jiaqi Wu author should link to GitHub");
+assert(siteData.publications[0].authors.find((author) => author.name === "Jiaqi Wu").href === "https://jiaoplusjuan.github.io", "Jiaqi Wu author should link to homepage");
 assert(siteData.publications[0].authors.find((author) => author.name === "Kun Xu").href === "https://cg.cs.tsinghua.edu.cn/people/~kun/", "Kun Xu author should link to homepage");
 assert(siteData.publications[0].authors.find((author) => author.name === "Shuang Zhao").href === "https://shuangz.com", "Shuang Zhao author should link to homepage");
 assert(siteData.publications[1].authors.find((author) => author.name === "Lingqi Yan").href === "https://sites.cs.ucsb.edu/~lingqi/", "Lingqi Yan author should link to homepage");
