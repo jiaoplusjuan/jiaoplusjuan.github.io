@@ -97,7 +97,7 @@ assert(!html.includes('type="module"'), "index.html should not require module sc
 assert(html.indexOf('src="data/site-data.js') < html.indexOf('src="scripts/render-site.js'), "index.html should load site data before the renderer");
 assert(!html.includes("Gradient Domain Reconstruction for Monte Carlo PDE Solvers"), "index.html should not contain editable publication content");
 assert(dataSource.includes("assets/profile.jpg"), "data/site-data.js should reference the local portrait");
-assert(existsSync(join(root, "resume_engilish.pdf")), "CV PDF should exist at the linked path");
+assert(existsSync(join(root, "resume.pdf")), "CV PDF should exist at the linked path");
 assert(!dataSource.includes("export const"), "data/site-data.js should be a classic script, not an ES module");
 assert(renderSource.includes("paper-thumb-frame"), "renderer should wrap paper images in a fixed thumbnail frame");
 assert(renderSource.includes("paper-thumb-image"), "renderer should render paper images inside the thumbnail frame");
@@ -186,7 +186,7 @@ assert(
   JSON.stringify(siteData.profile.links.map((link) => link.label)) === JSON.stringify(["Email", "GitHub", "CV"]),
   "homepage profile links should be exactly Email, GitHub, and CV",
 );
-assert(siteData.profile.links.some((link) => link.href === "resume_engilish.pdf"), "CV link should point to the local PDF");
+assert(siteData.profile.links.some((link) => link.href === "resume.pdf"), "CV link should point to the local PDF");
 assert(!siteData.profile.links.some((link) => link.href.startsWith("#")), "profile links should not jump to page sections");
 assert(siteData.publications.length >= 3, "siteData should include at least three active publications");
 assert(

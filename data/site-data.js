@@ -11,7 +11,7 @@ window.siteData = {
     links: [
       { label: "Email", href: "mailto:wujiaqi22@mails.tsinghua.edu.cn" },
       { label: "GitHub", href: "https://github.com/jiaoplusjuan" },
-      { label: "CV", href: "resume_engilish.pdf" },
+      { label: "CV", href: "resume.pdf" },
     ],
   },
 
@@ -81,7 +81,7 @@ window.siteData = {
     title: "Research Experience",
     items: [
       {
-        date: "Mar. 2026 – current",
+        date: "May. 2026 – current",
         text: "Research Intern, meshy.",
       },
       {
@@ -93,7 +93,7 @@ window.siteData = {
       //   text: "Developer, Huawei HarmonyOS Pipeline AI Rendering Project.",
       // },
       {
-        date: "Mar. 2024 – Oct. 2024",
+        date: "May. 2024 – Oct. 2024",
         text: "Research Intern, Tencent IEG, focus on inverse rendering.",
       },
     ],
