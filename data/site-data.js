@@ -44,7 +44,7 @@ window.siteData = {
       venue: "ACM Transactions on Graphics (SIGGRAPH 2026)",
       image: "assets/sig2026an.png",
       links: [
-        { label: "PDF", href: "" },
+        { label: "PDF", href: "paper/Generalized-Spherical-Harmonics-Products-using-Spherical-Grids.pdf" },
         { label: "Code", href: "" },
       ],
     },
