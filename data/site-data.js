@@ -25,7 +25,7 @@ window.siteData = {
         { name: "Kun Xu", href: "https://cg.cs.tsinghua.edu.cn/people/~kun/" },
       ],
       venue: "ACM Transactions on Graphics (SIGGRAPH 2026)",
-      //venueNote: "SIGGRAPH 2026 Technical Papers Honorable Mention Award",
+      venueNote: "SIGGRAPH 2026 Technical Papers Honorable Mention Award",
       image: "assets/sig2026wu.jpg",
       links: [
         { label: "PDF", href: "paper/Gradient-Domain-Reconstruction-for-Monte-Carlo-PDE-Solvers.pdf" },
