@@ -18,6 +18,7 @@ const gradientTeaserPdfPath = join(root, "assets", "sig2026teaser.pdf");
 const gradientTeaserImagePath = join(root, "assets", "sig2026teaser.jpg");
 const dataPath = join(root, "data", "site-data.js");
 const renderPath = join(root, "scripts", "render-site.js");
+const legacyRedirectPath = join(root, "jiaqiwu-tsinghua.github.io", "index.html");
 const expectedPaperImages = [
   "assets/sig2026wu.jpg",
   "assets/sig2026an.png",
@@ -46,6 +47,7 @@ for (const imagePath of expectedPaperImages) {
 }
 assert(existsSync(dataPath), "data/site-data.js should exist");
 assert(existsSync(renderPath), "scripts/render-site.js should exist");
+assert(existsSync(legacyRedirectPath), "legacy project-page URL redirect should exist");
 
 const html = readFileSync(indexPath, "utf8");
 const sitemap = readFileSync(sitemapPath, "utf8");
@@ -54,6 +56,7 @@ const css = readFileSync(stylesPath, "utf8");
 const gradientProject = readFileSync(gradientProjectPath, "utf8");
 const dataSource = readFileSync(dataPath, "utf8");
 const renderSource = readFileSync(renderPath, "utf8");
+const legacyRedirect = readFileSync(legacyRedirectPath, "utf8");
 const dataContext = { window: {} };
 vm.createContext(dataContext);
 vm.runInContext(dataSource, dataContext, { filename: dataPath });
@@ -68,6 +71,9 @@ assert(sitemap.includes(`<loc>${siteUrl}${sphericalPaperHref}</loc>`), "sitemap.
 assert(robots.includes("User-agent: *"), "robots.txt should apply to all crawlers");
 assert(robots.includes("Allow: /"), "robots.txt should allow crawling the site");
 assert(robots.includes(`Sitemap: ${siteUrl}sitemap.xml`), "robots.txt should reference sitemap.xml");
+assert(legacyRedirect.includes(`url=${siteUrl}`), "legacy redirect should point to the root homepage");
+assert(legacyRedirect.includes(`<link rel="canonical" href="${siteUrl}">`), "legacy redirect should canonicalize to the root homepage");
+assert(legacyRedirect.includes('content="noindex, follow"'), "legacy redirect should avoid keeping the old URL indexed");
 
 for (const text of [
   "Jiaqi Wu",
