@@ -8,8 +8,14 @@ const sitemapPath = join(root, "sitemap.xml");
 const robotsPath = join(root, "robots.txt");
 const stylesPath = join(root, "styles.css");
 const profilePath = join(root, "assets", "profile.jpg");
+const gradientProjectHref = "gradient-domain-reconstruction.html";
+const gradientProjectPath = join(root, gradientProjectHref);
 const gradientPaperHref = "paper/Gradient-Domain-Reconstruction-for-Monte-Carlo-PDE-Solvers.pdf";
 const gradientPaperPath = join(root, gradientPaperHref);
+const sphericalPaperHref = "paper/Generalized-Spherical-Harmonics-Products-using-Spherical-Grids.pdf";
+const sphericalPaperPath = join(root, sphericalPaperHref);
+const gradientTeaserPdfPath = join(root, "assets", "sig2026teaser.pdf");
+const gradientTeaserImagePath = join(root, "assets", "sig2026teaser.jpg");
 const dataPath = join(root, "data", "site-data.js");
 const renderPath = join(root, "scripts", "render-site.js");
 const expectedPaperImages = [
@@ -30,7 +36,11 @@ assert(existsSync(sitemapPath), "sitemap.xml should exist");
 assert(existsSync(robotsPath), "robots.txt should exist");
 assert(existsSync(stylesPath), "styles.css should exist");
 assert(existsSync(profilePath), "assets/profile.jpg should exist");
+assert(existsSync(gradientProjectPath), "Gradient paper project page should exist");
+assert(existsSync(gradientTeaserPdfPath), "Gradient paper teaser PDF should exist");
+assert(existsSync(gradientTeaserImagePath), "optimized Gradient paper teaser image should exist");
 assert(existsSync(gradientPaperPath), "Gradient paper PDF should exist for the Gradient paper PDF link");
+assert(existsSync(sphericalPaperPath), "Spherical harmonics paper PDF should exist for the Spherical harmonics PDF link");
 for (const imagePath of expectedPaperImages) {
   assert(existsSync(join(root, imagePath)), `${imagePath} should exist`);
 }
@@ -41,6 +51,7 @@ const html = readFileSync(indexPath, "utf8");
 const sitemap = readFileSync(sitemapPath, "utf8");
 const robots = readFileSync(robotsPath, "utf8");
 const css = readFileSync(stylesPath, "utf8");
+const gradientProject = readFileSync(gradientProjectPath, "utf8");
 const dataSource = readFileSync(dataPath, "utf8");
 const renderSource = readFileSync(renderPath, "utf8");
 const dataContext = { window: {} };
@@ -50,7 +61,10 @@ const siteData = dataContext.window.siteData;
 assert(siteData, "data/site-data.js should expose window.siteData for non-module loading");
 
 assert(sitemap.includes(`<loc>${siteUrl}</loc>`), "sitemap.xml should list the GitHub Pages homepage URL");
-assert(sitemap.includes("<lastmod>2026-05-17</lastmod>"), "sitemap.xml should include a current lastmod date");
+assert(sitemap.includes("<lastmod>2026-05-20</lastmod>"), "sitemap.xml should include a current lastmod date");
+assert(sitemap.includes(`<loc>${siteUrl}${gradientProjectHref}</loc>`), "sitemap.xml should list the Gradient paper project page URL");
+assert(sitemap.includes(`<loc>${siteUrl}${gradientPaperHref}</loc>`), "sitemap.xml should list the Gradient paper PDF URL");
+assert(sitemap.includes(`<loc>${siteUrl}${sphericalPaperHref}</loc>`), "sitemap.xml should list the Spherical harmonics paper PDF URL");
 assert(robots.includes("User-agent: *"), "robots.txt should apply to all crawlers");
 assert(robots.includes("Allow: /"), "robots.txt should allow crawling the site");
 assert(robots.includes(`Sitemap: ${siteUrl}sitemap.xml`), "robots.txt should reference sitemap.xml");
@@ -86,6 +100,21 @@ assert(
 assert(!("research" in siteData), "siteData should not keep the removed standalone Research section");
 
 assert(html.includes('href="styles.css?v='), "index.html should load cache-busted styles.css");
+assert(html.includes(`<link rel="canonical" href="${siteUrl}">`), "index.html should declare the canonical GitHub Pages URL");
+assert(html.includes('<meta name="robots" content="index, follow">'), "index.html should explicitly allow indexing and following links");
+assert(html.includes('<meta name="author" content="Jiaqi Wu">'), "index.html should include the public author name");
+assert(
+  html.includes("Gradient Domain Reconstruction for Monte Carlo PDE Solvers"),
+  "index.html should expose the main paper title in static SEO metadata",
+);
+assert(
+  html.includes("Generalized Spherical Harmonics Products using Spherical Grids"),
+  "index.html should expose the second paper title in static SEO metadata",
+);
+assert(html.includes('type="application/ld+json"'), "index.html should include JSON-LD structured data");
+assert(html.includes('"@type": "Person"'), "JSON-LD should describe Jiaqi Wu as a Person");
+assert(html.includes('"@type": "ScholarlyArticle"'), "JSON-LD should describe publications as ScholarlyArticle entries");
+assert(html.includes(`${siteUrl}${gradientProjectHref}`), "homepage JSON-LD should point the Gradient paper to its project page");
 assert(
   html.includes('<meta name="google-site-verification" content="8v93ilf4QYqnHOZviplRx_3jtbRqEADriWoNgA3eijM">'),
   "index.html should include Google Search Console verification meta",
@@ -95,7 +124,6 @@ assert(html.includes('src="data/site-data.js?v='), "index.html should load cache
 assert(html.includes('src="scripts/render-site.js?v='), "index.html should load a cache-busted renderer");
 assert(!html.includes('type="module"'), "index.html should not require module scripts so direct file opening works");
 assert(html.indexOf('src="data/site-data.js') < html.indexOf('src="scripts/render-site.js'), "index.html should load site data before the renderer");
-assert(!html.includes("Gradient Domain Reconstruction for Monte Carlo PDE Solvers"), "index.html should not contain editable publication content");
 assert(dataSource.includes("assets/profile.jpg"), "data/site-data.js should reference the local portrait");
 assert(existsSync(join(root, "resume.pdf")), "CV PDF should exist at the linked path");
 assert(!dataSource.includes("export const"), "data/site-data.js should be a classic script, not an ES module");
@@ -107,6 +135,31 @@ assert(renderSource.includes("data-coming-soon"), "empty paper links should rend
 assert(renderSource.includes("Coming soon"), "renderer should show a Coming soon message for empty paper links");
 assert(!renderSource.includes("import("), "renderer should not dynamically import data, so direct file opening works");
 assert(!renderSource.includes("export function"), "renderer should be a classic script, not an ES module");
+
+assert(gradientProject.includes("Gradient Domain Reconstruction for Monte Carlo PDE Solvers"), "project page should include the paper title");
+assert(gradientProject.includes("assets/sig2026teaser.pdf"), "project page teaser should link to the source teaser PDF");
+assert(gradientProject.includes("assets/sig2026teaser.jpg"), "project page should use the teaser image rendered from the PDF");
+assert(gradientProject.includes("Grid-free Monte Carlo methods are capable of solving Poisson equations"), "project page should include the extracted abstract");
+assert(gradientProject.includes("The robot&rsquo;s lower body is immersed in water"), "project page teaser caption should use the Fig. 1 caption");
+assert(!gradientProject.includes("Fig. 1."), "project page teaser caption should omit the Fig. 1 prefix");
+assert(!gradientProject.includes('class="kicker"'), "project page should omit the top ACM kicker");
+assert(gradientProject.includes("ACM Transactions on Graphics (SIGGRAPH) 2026"), "project page should use the simplified venue text");
+assert(gradientProject.includes("Jiaqi Wu</a><sup>1</sup>"), "project page should annotate Jiaqi Wu with institution 1");
+assert(gradientProject.includes("Xuejun Hu<sup>1</sup>"), "project page should annotate Xuejun Hu with institution 1");
+assert(gradientProject.includes("Shuang Zhao</a><sup>2</sup>"), "project page should annotate Shuang Zhao with institution 2");
+assert(gradientProject.includes("Kun Xu</a><sup>1</sup>"), "project page should annotate Kun Xu with institution 1");
+assert(gradientProject.includes("https://doi.org/10.1145/3811295"), "project page should include the paper DOI");
+assert(gradientProject.includes("@article{wu2026gradient"), "project page should include BibTeX");
+assert(gradientProject.includes("project-links"), "project page should show simple text resource links");
+assert(gradientProject.includes(">PDF</a>"), "project page should expose a PDF link");
+assert(gradientProject.includes(">Code</span>"), "project page should expose a Code placeholder");
+assert(!gradientProject.includes("<svg"), "project page should not use large icon buttons for resources");
+assert(!gradientProject.includes("Highlights"), "project page should omit the Highlights section");
+assert(!gradientProject.includes(">DOI</a>"), "project page top links should not include DOI");
+assert(!gradientProject.includes("<iframe"), "project page should not embed the full paper PDF");
+assert(!gradientProject.includes("<object"), "project page should not embed the full paper PDF");
+assert(!gradientProject.includes("<embed"), "project page should not embed the full paper PDF");
+
 const renderContext = {
   window: {
     siteData: {
@@ -192,6 +245,10 @@ assert(siteData.publications.length >= 3, "siteData should include at least thre
 assert(
   siteData.publications[0].links.some((link) => link.label === "PDF" && link.href === gradientPaperHref),
   "Gradient paper PDF button should point to the local Gradient paper PDF",
+);
+assert(
+  siteData.publications[0].links.some((link) => link.label === "Project" && link.href === gradientProjectHref),
+  "Gradient paper should link to its project page",
 );
 assert(siteData.publications[0].authors.find((author) => author.name === "Jiaqi Wu").href === "https://jiaoplusjuan.github.io", "Jiaqi Wu author should link to homepage");
 assert(siteData.publications[0].authors.find((author) => author.name === "Kun Xu").href === "https://cg.cs.tsinghua.edu.cn/people/~kun/", "Kun Xu author should link to homepage");

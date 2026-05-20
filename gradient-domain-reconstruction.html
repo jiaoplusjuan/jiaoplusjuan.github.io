@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Project page for Gradient Domain Reconstruction for Monte Carlo PDE Solvers, a SIGGRAPH 2026 paper by Jiaqi Wu, Xuejun Hu, Shuang Zhao, and Kun Xu."
+    >
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Jiaqi Wu">
+    <meta
+      name="keywords"
+      content="Gradient Domain Reconstruction for Monte Carlo PDE Solvers, Monte Carlo PDE solvers, Walk on Spheres, gradient-domain reconstruction, SIGGRAPH 2026, ACM TOG"
+    >
+    <link rel="canonical" href="https://jiaoplusjuan.github.io/jiaqiwu-tsinghua.github.io/gradient-domain-reconstruction.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Gradient Domain Reconstruction for Monte Carlo PDE Solvers">
+    <meta
+      property="og:description"
+      content="A gradient-domain framework for grid-free Monte Carlo Poisson solvers, published in ACM Transactions on Graphics (SIGGRAPH) 2026."
+    >
+    <meta property="og:url" content="https://jiaoplusjuan.github.io/jiaqiwu-tsinghua.github.io/gradient-domain-reconstruction.html">
+    <meta property="og:image" content="https://jiaoplusjuan.github.io/jiaqiwu-tsinghua.github.io/assets/sig2026teaser.jpg">
+    <title>Gradient Domain Reconstruction for Monte Carlo PDE Solvers</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "mainEntityOfPage": "https://jiaoplusjuan.github.io/jiaqiwu-tsinghua.github.io/gradient-domain-reconstruction.html",
+        "name": "Gradient Domain Reconstruction for Monte Carlo PDE Solvers",
+        "headline": "Gradient Domain Reconstruction for Monte Carlo PDE Solvers",
+        "abstract": "Grid-free Monte Carlo methods are capable of solving Poisson equations on highly complex domains. However, existing methods operate solely in the primal domain and can converge slowly due to high variance. Inspired by gradient-domain rendering, we introduce a gradient-domain framework for Poisson problems.",
+        "author": [
+          {
+            "@type": "Person",
+            "name": "Jiaqi Wu",
+            "url": "https://jiaoplusjuan.github.io"
+          },
+          {
+            "@type": "Person",
+            "name": "Xuejun Hu"
+          },
+          {
+            "@type": "Person",
+            "name": "Shuang Zhao",
+            "url": "https://shuangz.com"
+          },
+          {
+            "@type": "Person",
+            "name": "Kun Xu",
+            "url": "https://cg.cs.tsinghua.edu.cn/people/~kun/"
+          }
+        ],
+        "datePublished": "2026-07",
+        "publisher": {
+          "@type": "Organization",
+          "name": "ACM"
+        },
+        "isPartOf": "ACM Transactions on Graphics (SIGGRAPH) 2026",
+        "volumeNumber": "45",
+        "issueNumber": "4",
+        "pagination": "Article 130",
+        "identifier": "https://doi.org/10.1145/3811295",
+        "sameAs": [
+          "https://doi.org/10.1145/3811295"
+        ],
+        "image": "https://jiaoplusjuan.github.io/jiaqiwu-tsinghua.github.io/assets/sig2026teaser.jpg",
+        "encoding": {
+          "@type": "MediaObject",
+          "contentUrl": "https://jiaoplusjuan.github.io/jiaqiwu-tsinghua.github.io/paper/Gradient-Domain-Reconstruction-for-Monte-Carlo-PDE-Solvers.pdf",
+          "encodingFormat": "application/pdf"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="styles.css?v=20260520-3">
+  </head>
+  <body>
+    <main class="project-page">
+      <header class="project-hero">
+        <h1>Gradient Domain Reconstruction for Monte Carlo PDE Solvers</h1>
+        <p class="project-authors">
+          <a href="https://jiaoplusjuan.github.io">Jiaqi Wu</a><sup>1</sup>,
+          Xuejun Hu<sup>1</sup>,
+          <a href="https://shuangz.com">Shuang Zhao</a><sup>2</sup>,
+          <a href="https://cg.cs.tsinghua.edu.cn/people/~kun/">Kun Xu</a><sup>1</sup>
+        </p>
+        <p class="project-affiliations">
+          <sup>1</sup>Tsinghua University &nbsp;&nbsp; <sup>2</sup>University of Illinois Urbana-Champaign
+        </p>
+        <p class="project-venue">ACM Transactions on Graphics (SIGGRAPH) 2026</p>
+        <p class="project-award">SIGGRAPH 2026 Technical Papers Honorable Mention Award</p>
+        <div class="project-links" aria-label="Project links">
+          <a href="paper/Gradient-Domain-Reconstruction-for-Monte-Carlo-PDE-Solvers.pdf">PDF</a>
+          <span class="project-link-disabled" aria-disabled="true">Code</span>
+        </div>
+      </header>
+
+      <figure class="project-teaser">
+        <a class="project-teaser-link" href="assets/sig2026teaser.pdf" aria-label="Open teaser PDF">
+          <img
+            src="assets/sig2026teaser.jpg"
+            alt="Teaser comparison of heat-transfer reconstruction on a robot model"
+            loading="eager"
+            decoding="async"
+          >
+        </a>
+        <figcaption>
+          We simulate heat transfer within a robot by solving the Laplace equation. The robot&rsquo;s lower body is immersed in water and its upper body is exposed to air, powered by an internal reactor. Under a simplified modeling assumption, we assign Dirichlet boundary conditions to the submerged lower-body surfaces to represent the water temperature, and Neumann boundary conditions to the exposed upper-body surfaces to model adiabatic heat transfer at the air interface. Internal sources account for heat generated by the reactor. We present temperature fields under two scenarios: a global slice solution, in which the solution is computed over a planar cross-section of the robot, and a local region-of-interest solution, restricted to a small area near the shoulder. All methods are constrained to a fixed 100-second time budget. Our method achieves lower error than other Monte Carlo PDE solvers in both scenarios.
+        </figcaption>
+      </figure>
+
+      <section class="project-section" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <div class="project-copy">
+          <p>
+            Grid-free Monte Carlo methods are capable of solving Poisson equations on highly complex domains. However, existing methods operate solely in the primal domain and can converge slowly due to high variance. Inspired by gradient-domain rendering, we introduce a gradient-domain framework for Poisson problems. Specifically, we devise a new Monte Carlo estimator that directly targets differences of the solution between spatially varying query locations. Further, we adopt state-of-the-art reconstruction techniques originated in gradient-domain rendering to allow efficient reconstruction of the solutions without incurring additional bias. We demonstrate the effectiveness of our technique by comparing solutions obtained using our method and several state-of-the-art baselines.
+          </p>
+        </div>
+      </section>
+
+      <section class="project-section" id="bibtex" aria-labelledby="bibtex-title">
+        <h2 id="bibtex-title">BibTeX</h2>
+        <div class="project-copy">
+          <pre class="bibtex-block"><code>@article{wu2026gradient,
+  author = {Wu, Jiaqi and Hu, Xuejun and Zhao, Shuang and Xu, Kun},
+  title = {Gradient Domain Reconstruction for Monte Carlo PDE Solvers},
+  journal = {ACM Transactions on Graphics},
+  volume = {45},
+  number = {4},
+  articleno = {130},
+  numpages = {11},
+  year = {2026},
+  month = {July},
+  doi = {10.1145/3811295},
+  publisher = {Association for Computing Machinery}
+}</code></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -5,10 +5,13 @@ Static personal academic homepage for a `username.github.io` GitHub Pages reposi
 ## Files
 
 - `index.html` - minimal page shell
+- `gradient-domain-reconstruction.html` - standalone project page for the Gradient Domain Reconstruction paper
 - `styles.css` - responsive academic layout
 - `data/site-data.js` - editable homepage content
 - `scripts/render-site.js` - renders content data into the page
 - `assets/profile.jpg` - optimized portrait
+- `assets/sig2026teaser.pdf` - source teaser figure for the Gradient Domain Reconstruction project page
+- `assets/sig2026teaser.jpg` - optimized web preview rendered from the teaser PDF
 - `tests/validate-site.mjs` - content and privacy validation
 
 ## Edit Content

@@ -80,10 +80,10 @@ window.siteData = {
   experience: {
     title: "Research Experience",
     items: [
-      {
-        date: "May. 2026 – current",
-        text: "Research Intern, meshy.",
-      },
+      // {
+      //   date: "May. 2026 – current",
+      //   text: "Research Intern, meshy.",
+      // },
       {
         date: "Jun. 2025 – Aug. 2025",
         text: "Research Intern, Huawei, focus on sparse volumetric voxel rasterization and 3D Gaussian Splatting.",
