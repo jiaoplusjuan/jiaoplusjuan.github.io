@@ -185,6 +185,7 @@ vm.createContext(renderContext);
 vm.runInContext(renderSource, renderContext, { filename: renderPath });
 assert(renderContext.rootElement.innerHTML.includes("Jiaqi Wu"), "renderer should still render the profile when chineseName is omitted");
 for (const href of [
+  siteUrl,
   "https://github.com/jiaoplusjuan",
   "https://cg.cs.tsinghua.edu.cn/people/~kun/",
   "https://shuangz.com",
@@ -193,8 +194,8 @@ for (const href of [
   assert(renderContext.rootElement.innerHTML.includes(`href="${href}"`), `renderer should link author/profile URL: ${href}`);
 }
 assert(
-  renderContext.rootElement.innerHTML.includes('<strong><a class="author-link" href="https://github.com/jiaoplusjuan">Jiaqi Wu</a></strong>'),
-  "highlighted linked authors should remain bold",
+  renderContext.rootElement.innerHTML.includes(`<strong><a class="author-link" href="${siteUrl}">Jiaqi Wu</a></strong>`),
+  "highlighted linked Jiaqi Wu authors should point to the academic homepage and remain bold",
 );
 assert(
   renderContext.rootElement.innerHTML.includes('href="https://cg.cs.tsinghua.edu.cn/people/~kun/"'),
@@ -250,7 +251,13 @@ assert(
   siteData.publications[0].links.some((link) => link.label === "Project" && link.href === gradientProjectHref),
   "Gradient paper should link to its project page",
 );
-assert(siteData.publications[0].authors.find((author) => author.name === "Jiaqi Wu").href === "https://jiaoplusjuan.github.io", "Jiaqi Wu author should link to homepage");
+assert(siteData.publications[0].authors.find((author) => author.name === "Jiaqi Wu").href === siteUrl, "Jiaqi Wu author should link to homepage");
+for (const paper of siteData.publications) {
+  const jiaqi = paper.authors.find((author) => author.name === "Jiaqi Wu");
+  if (jiaqi) {
+    assert(jiaqi.href === siteUrl, `${paper.title} should link Jiaqi Wu to the academic homepage`);
+  }
+}
 assert(siteData.publications[0].authors.find((author) => author.name === "Kun Xu").href === "https://cg.cs.tsinghua.edu.cn/people/~kun/", "Kun Xu author should link to homepage");
 assert(siteData.publications[0].authors.find((author) => author.name === "Shuang Zhao").href === "https://shuangz.com", "Shuang Zhao author should link to homepage");
 assert(siteData.publications[1].authors.find((author) => author.name === "Lingqi Yan").href === "https://sites.cs.ucsb.edu/~lingqi/", "Lingqi Yan author should link to homepage");
