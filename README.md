@@ -5,7 +5,7 @@ Static personal academic homepage for a `username.github.io` GitHub Pages reposi
 ## Files
 
 - `index.html` - minimal page shell
-- `gradient-domain-reconstruction.html` - standalone project page for the Gradient Domain Reconstruction paper
+- `GDMCPDE.html` - standalone project page for the Gradient Domain Reconstruction paper
 - `styles.css` - responsive academic layout
 - `data/site-data.js` - editable homepage content
 - `scripts/render-site.js` - renders content data into the page
