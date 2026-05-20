@@ -23,7 +23,7 @@ const expectedPaperImages = [
   "assets/sig2026an.png",
   "assets/sig2025.png",
 ];
-const siteUrl = "https://jiaoplusjuan.github.io/jiaqiwu-tsinghua.github.io/";
+const siteUrl = "https://jiaoplusjuan.github.io/";
 
 function assert(condition, message) {
   if (!condition) {

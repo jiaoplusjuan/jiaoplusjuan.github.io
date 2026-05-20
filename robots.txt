@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jiaoplusjuan.github.io/jiaqiwu-tsinghua.github.io/sitemap.xml
+Sitemap: https://jiaoplusjuan.github.io/sitemap.xml
