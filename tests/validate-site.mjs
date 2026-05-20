@@ -200,7 +200,7 @@ assert(
   renderContext.rootElement.innerHTML.includes('href="https://cg.cs.tsinghua.edu.cn/people/~kun/"'),
   "renderer should turn the Kun Xu intro link into an anchor",
 );
-assert(renderContext.rootElement.innerHTML.includes("Publications"), "renderer should still render the Publications section");
+assert(renderContext.rootElement.innerHTML.includes("Selected Publications"), "renderer should render the Selected Publications section title");
 assert(!renderContext.rootElement.innerHTML.includes('id="research"'), "renderer should not render the standalone Research section");
 assert(!renderContext.rootElement.innerHTML.includes("undefined"), "renderer should not print undefined when optional profile fields are omitted");
 const venueNoteRenderContext = {

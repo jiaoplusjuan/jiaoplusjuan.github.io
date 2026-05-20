@@ -130,7 +130,7 @@ function renderPublications(publications) {
   return `
     <section class="section" id="publications">
       <div class="section-title">
-        <h2>Publications</h2>
+        <h2>Selected Publications</h2>
         <p class="note">* indicates equal contribution.</p>
       </div>
       <div class="section-content paper-list">${papers}</div>
