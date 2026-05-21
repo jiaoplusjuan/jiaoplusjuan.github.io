@@ -151,7 +151,7 @@ assert(!gradientProject.includes("Fig. 1."), "project page teaser caption should
 assert(!gradientProject.includes('class="kicker"'), "project page should omit the top ACM kicker");
 assert(gradientProject.includes("ACM Transactions on Graphics (SIGGRAPH) 2026"), "project page should use the simplified venue text");
 assert(gradientProject.includes("Jiaqi Wu</a><sup>1</sup>"), "project page should annotate Jiaqi Wu with institution 1");
-assert(gradientProject.includes("Xuejun Hu<sup>1</sup>"), "project page should annotate Xuejun Hu with institution 1");
+assert(gradientProject.includes("Xuejun Hu</a><sup>1</sup>"), "project page should annotate Xuejun Hu with institution 1");
 assert(gradientProject.includes("Shuang Zhao</a><sup>2</sup>"), "project page should annotate Shuang Zhao with institution 2");
 assert(gradientProject.includes("Kun Xu</a><sup>1</sup>"), "project page should annotate Kun Xu with institution 1");
 assert(gradientProject.includes("https://doi.org/10.1145/3811295"), "project page should include the paper DOI");

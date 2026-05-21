@@ -20,7 +20,7 @@ window.siteData = {
       title: "Gradient Domain Reconstruction for Monte Carlo PDE Solvers",
       authors: [
         { name: "Jiaqi Wu", highlight: true, href: "https://jiaoplusjuan.github.io/" },
-        { name: "Xuejun Hu" },
+        { name: "Xuejun Hu", href: "https://hoosus.github.io/" },
         { name: "Shuang Zhao", href: "https://shuangz.com" },
         { name: "Kun Xu", href: "https://cg.cs.tsinghua.edu.cn/people/~kun/" },
       ],
