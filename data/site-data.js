@@ -30,7 +30,7 @@ window.siteData = {
       links: [
         { label: "Project", href: "GDMCPDE.html" },
         { label: "PDF", href: "paper/Gradient-Domain-Reconstruction-for-Monte-Carlo-PDE-Solvers.pdf" },
-        { label: "Code", href: "" },
+        { label: "Code", href: "https://github.com/jiaoplusjuan/Gradient-Domain-Reconstruction-for-Monte-Carlo-PDE-Solvers" },
       ],
     },
     {

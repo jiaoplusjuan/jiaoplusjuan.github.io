@@ -159,7 +159,12 @@ assert(gradientProject.includes("https://doi.org/10.1145/3811295"), "project pag
 assert(gradientProject.includes("@article{wu2026gradient"), "project page should include BibTeX");
 assert(gradientProject.includes("project-links"), "project page should show simple text resource links");
 assert(gradientProject.includes(">PDF</a>"), "project page should expose a PDF link");
-assert(gradientProject.includes(">Code</span>"), "project page should expose a Code placeholder");
+assert(
+  gradientProject.includes(
+    'href="https://github.com/jiaoplusjuan/Gradient-Domain-Reconstruction-for-Monte-Carlo-PDE-Solvers">Code</a>'
+  ),
+  "project page should expose the released Code link"
+);
 assert(!gradientProject.includes("<svg"), "project page should not use large icon buttons for resources");
 assert(!gradientProject.includes("Highlights"), "project page should omit the Highlights section");
 assert(!gradientProject.includes(">DOI</a>"), "project page top links should not include DOI");
