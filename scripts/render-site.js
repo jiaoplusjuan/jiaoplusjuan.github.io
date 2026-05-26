@@ -206,7 +206,10 @@ function mountPage() {
     return;
   }
 
-  root.innerHTML = renderPage(window.siteData);
+  if (!root.innerHTML.trim()) {
+    root.innerHTML = renderPage(window.siteData);
+  }
+
   if (typeof root.addEventListener === "function") {
     root.addEventListener("click", (event) => {
       const target =

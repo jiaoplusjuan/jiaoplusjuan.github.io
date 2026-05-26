@@ -126,6 +126,20 @@ assert(
   "index.html should include Google Search Console verification meta",
 );
 assert(html.includes('id="site-root"'), "index.html should expose a site-root mount point");
+const staticMainMatch = html.match(/<main[^>]*id="site-root"[^>]*>([\s\S]*?)<\/main>/);
+assert(staticMainMatch, "index.html should include the site-root main element");
+const staticMain = staticMainMatch[1];
+assert(staticMain.includes('class="intro site-header"'), "index.html should statically render the profile header");
+assert(staticMain.includes("<h1>Jiaqi Wu</h1>"), "index.html should statically render the homepage name");
+assert(staticMain.includes('class="profile-links"'), "index.html should statically render profile links");
+assert(staticMain.includes('id="publications"'), "index.html should statically render the publications section");
+assert(staticMain.includes('class="paper-card"'), "index.html should statically render paper cards");
+assert(
+  staticMain.includes('href="paper/Gradient-Domain-Reconstruction-for-Monte-Carlo-PDE-Solvers.pdf"'),
+  "index.html should statically render the Gradient paper PDF link",
+);
+assert(staticMain.includes("Research Intern, Huawei"), "index.html should statically render research experience");
+assert(staticMain.includes("National Scholarship"), "index.html should statically render awards");
 assert(html.includes('src="data/site-data.js?v='), "index.html should load cache-busted site data before the renderer");
 assert(html.includes('src="scripts/render-site.js?v='), "index.html should load a cache-busted renderer");
 assert(!html.includes('type="module"'), "index.html should not require module scripts so direct file opening works");
@@ -247,6 +261,27 @@ assert(venueNoteRenderContext.rootElement.innerHTML.includes("Best Paper Award")
 assert(
   venueNoteRenderContext.rootElement.innerHTML.includes('<p class="venue-note">Best Paper Award</p>'),
   "venue-note should render on its own line",
+);
+const preRenderedContext = {
+  window: {
+    siteData,
+  },
+  document: {
+    getElementById(id) {
+      assert(id === "site-root", "renderer should mount into site-root for pre-rendered content");
+      preRenderedContext.rootElement = {
+        innerHTML: '<section class="intro site-header" id="about"><h1>Static Marker</h1></section>',
+      };
+      return preRenderedContext.rootElement;
+    },
+  },
+  rootElement: null,
+};
+vm.createContext(preRenderedContext);
+vm.runInContext(renderSource, preRenderedContext, { filename: renderPath });
+assert(
+  preRenderedContext.rootElement.innerHTML.includes("Static Marker"),
+  "renderer should preserve pre-rendered static homepage content",
 );
 assert(
   JSON.stringify(siteData.profile.links.map((link) => link.label)) === JSON.stringify(["Email", "GitHub", "CV"]),
